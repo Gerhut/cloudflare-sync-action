@@ -1,0 +1,26 @@
+name: Cloudflare Sync Action
+description: A GitHub action that sync the CNAME DNS records in Cloudflare with local files.
+
+inputs:
+  cloudflare-token:
+    description: Cloudflare token
+    required: true
+    default: ${{ secrets.CLOUDFLARE_TOKEN }}
+  cloudflare-zone-id:
+    description: Cloudflare DNS zone id
+    required: true
+    default: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+  files:
+    description: CNAME files
+    required: false
+    default: '*'
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    CLOUDFLARE_TOKEN: ${{ inputs.cloudflare-token }}
+    CLOUDFLARE_ZONE_ID: ${{ inputs.cloudflare-zone-id }}
+  entrypoint: /usr/local/app/__main__.py
+  args:
+  - ${{ inputs.files }}
