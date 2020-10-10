@@ -5,11 +5,9 @@ inputs:
   cloudflare-token:
     description: Cloudflare token
     required: true
-    default: ${{ secrets.CLOUDFLARE_TOKEN }}
   cloudflare-zone-id:
     description: Cloudflare DNS zone id
     required: true
-    default: ${{ secrets.CLOUDFLARE_ZONE_ID }}
   files:
     description: CNAME files
     required: false
